@@ -1,20 +1,16 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        // If x is negative or ends with a 0 (except for 0 itself), it can't be a palindrome
-        if (x < 0 || (x % 10 == 0 && x != 0)) {
-            return false;
+        Stack<Character> stack = new Stack<>();
+        String s = Integer.toString(x);
+        char[] ch = s.toCharArray();
+        for (int i = 0; i < ch.length; i++) {
+            stack.push(ch[i]);
         }
-        
-        int reversed = 0;
-        int originalX = x;
-        
-        while (x > 0) {
-            int digit = x % 10;
-            reversed = reversed * 10 + digit;
-            x /= 10;
+        for (int i = 0; i < ch.length; i++) {
+            if (stack.pop() != ch[i]) {
+                return false;
+            }
         }
-        
-        // Compare the original number with the reversed number
-        return originalX == reversed;
+        return true;
     }
 }
