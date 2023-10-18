@@ -15,17 +15,15 @@
  */
 class Solution {
     public int rangeSumBST(TreeNode root, int low, int high) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        int sum = 0;
-        while (!queue.isEmpty()) {
-            TreeNode cur = queue.remove();
-            if (cur.val >= low && cur.val <= high) {
-                sum += cur.val;
-            }
-            if (cur.left != null) queue.add(cur.left);
-            if (cur.right != null) queue.add(cur.right);
+        if (root == null) {
+            return 0;
         }
+        int sum = 0;
+        if (root.val >= low && root.val <= high) {
+            sum += root.val;
+        }
+        sum += rangeSumBST(root.left, low, high);
+        sum += rangeSumBST(root.right, low, high);
         return sum;
     }
 }
