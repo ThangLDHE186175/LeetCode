@@ -1,16 +1,18 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        Stack<Character> stack = new Stack<>();
-        String s = Integer.toString(x);
-        char[] ch = s.toCharArray();
-        for (int i = 0; i < ch.length; i++) {
-            stack.push(ch[i]);
+        return isPalindromeHelper(Integer.toString(x));
+    }
+    public boolean isPalindromeHelper(String x) {
+        System.out.println(x);
+        if (x == null) {
+            return true;
         }
-        for (int i = 0; i < ch.length; i++) {
-            if (stack.pop() != ch[i]) {
-                return false;
-            }
+        if (x.length() <= 1) {
+            return true;
         }
-        return true;
+        if (x.charAt(0) != x.charAt(x.length() - 1)) {
+            return false;
+        }
+        return isPalindromeHelper(x.substring(1, x.length() - 1));
     }
 }
