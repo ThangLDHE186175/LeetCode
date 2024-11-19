@@ -1,13 +1,17 @@
+import java.util.*;
+
 class Solution {
+    int[] result = new int[2];
     public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (!map.isEmpty() && map.containsKey(complement)) {
-                return new int[]{map.get(complement), i};
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    result[0] = i;
+                    result[1] = j;
+                    return result;
+                }
             }
-            map.put(nums[i], i);
         }
-        return new int[]{};
+        return result;
     }
 }
